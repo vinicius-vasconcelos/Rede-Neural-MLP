@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="pnPrincipal" maxHeight="680.0" maxWidth="850.0" minHeight="680.0" minWidth="850.0" prefHeight="680.0" prefWidth="850.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="redeneuralmlp.FXMLPrincipalController">
+   <top>
+      <AnchorPane fx:id="pnMenu" prefHeight="225.0" prefWidth="800.0" style="-fx-background-color: #008080;" BorderPane.alignment="CENTER">
+         <children>
+            <Region layoutX="14.0" layoutY="69.0" prefHeight="142.0" prefWidth="163.0" style="-fx-background-color: #4ca6a6; -fx-background-radius: 5 5 5 5;;" />
+            <JFXTextField fx:id="tfCamadaEntrada" focusColor="#3e0e4c" labelFloat="true" layoutX="24.0" layoutY="81.0" promptText="Camada de Entrada:" />
+            <JFXTextField fx:id="tfCamadaSaida" focusColor="#3e0e4c" labelFloat="true" layoutX="24.0" layoutY="126.0" promptText="Camada de Saída:" />
+            <JFXTextField fx:id="tfCamadaOculta" focusColor="#3e0e4c" labelFloat="true" layoutX="24.0" layoutY="173.0" promptText="Camada de Oculta:" />
+            
+            <Region layoutX="226.0" layoutY="70.0" prefHeight="142.0" prefWidth="163.0" style="-fx-background-color: #4ca6a6; -fx-background-radius: 5 5 5 5;;" />
+            <Label layoutX="229.0" layoutY="52.0" text="Ajustes:" textFill="WHITE" />
+            <JFXTextField fx:id="tfErro" focusColor="#3e0e4c" labelFloat="true" layoutX="236.0" layoutY="82.0" promptText="Erro:" />
+            <JFXTextField fx:id="tfInteracoes" focusColor="#3e0e4c" labelFloat="true" layoutX="236.0" layoutY="127.0" promptText="Interações:" />
+            <JFXTextField fx:id="tfN" focusColor="#3e0e4c" labelFloat="true" layoutX="236.0" layoutY="174.0" promptText="N:" />
+            
+            <Label layoutX="17.0" layoutY="51.0" text="Configuração de Neurônios:" textFill="WHITE" />
+            <JFXButton fx:id="btLerArquivo" buttonType="RAISED" layoutX="658.0" layoutY="66.0" maxHeight="40.0" maxWidth="170.0" minHeight="40.0" minWidth="170.0" onAction="#evtBtLerArquivo" prefHeight="40.0" prefWidth="170.0" ripplerFill="WHITE" style="-fx-background-color: #3e0e4c;" text="Ler Arquivo" textFill="WHITE" />
+            <JFXButton fx:id="btLimpar" buttonType="RAISED" layoutX="658.0" layoutY="172.0" maxHeight="40.0" maxWidth="170.0" minHeight="40.0" minWidth="170.0" onAction="#evtBtLimpar" prefHeight="40.0" prefWidth="170.0" ripplerFill="WHITE" style="-fx-background-color: #3e0e4c;" text="Limpar" textFill="WHITE" />
+            <AnchorPane layoutX="6.0" layoutY="9.0" onMouseDragged="#evtDragged" onMousePressed="#evtPressed" prefHeight="40.0" prefWidth="825.0" style="-fx-background-color: #4ca6a6; -fx-background-radius: 10 10 10 10;">
+               <children>
+                  <Label layoutX="5.0" layoutY="3.0" text="Rede Neural do MESTRE VINICIUS, o mestre em redes neurais" textFill="#3e0e4c">
+                     <font>
+                        <Font name="System Bold Italic" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="634.0" layoutY="17.0" text="(com participação de Vitor Riedo)" textFill="#3e0e4c">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="btFechar" buttonType="RAISED" layoutX="786.0" layoutY="9.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" onAction="#evtBtFechar" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: Red;" text="X" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+            
+            <Region layoutX="436.0" layoutY="70.0" prefHeight="142.0" prefWidth="163.0" style="-fx-background-color: #4ca6a6; -fx-background-radius: 5 5 5 5;;" />
+            <Label layoutX="439.0" layoutY="52.0" text="Função de Transferência:" textFill="WHITE" />
+            <JFXRadioButton fx:id="rbLinear" layoutX="428.0" layoutY="76.0" onAction="#evtRbLinear" text="Linear" />
+            <JFXRadioButton fx:id="rbLogistica" layoutX="428.0" layoutY="111.0" onAction="#evtRbLogistica" text="Logística" />
+            <JFXRadioButton fx:id="rbHiperbolica" layoutX="429.0" layoutY="148.0" onAction="#evtRbHiperbolica" text="Tangente Hiberbólica" />
+            <JFXCheckBox fx:id="cbBaias" layoutX="444.0" layoutY="182.0" prefWidth="53.0" text="Bias" />
+            <JFXButton fx:id="btRealizarTreinamento" buttonType="RAISED" layoutX="658.0" layoutY="120.0" maxHeight="40.0" maxWidth="170.0" minHeight="40.0" minWidth="170.0" onAction="#evtBtRealizarTreinamento" prefHeight="40.0" prefWidth="170.0" ripplerFill="WHITE" style="-fx-background-color: #3e0e4c;" text="Realizar Treinamento" textFill="WHITE" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </padding>
+      </AnchorPane>
+   </top>
+   <padding>
+      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+   </padding>
+   <opaqueInsets>
+      <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+   </opaqueInsets>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="3.0" style="-fx-background-color: #008080;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </BorderPane.margin>
+         <children>
+            <AnchorPane prefHeight="433.0" prefWidth="637.0" style="-fx-background-color: #4ca6a6; -fx-background-radius: 15 15 15 15;">
+               <children>
+                  <LineChart fx:id="lcGrafico" axisSortingPolicy="NONE" layoutX="13.0" layoutY="10.0" prefHeight="413.0" prefWidth="606.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+               </children>
+            </AnchorPane>
+            <AnchorPane minWidth="10.0" prefHeight="433.0" prefWidth="194.0" style="-fx-background-color: #4ca6a6; -fx-background-radius: 15 15 15 15;">
+               <children>
+                  <JFXTextArea fx:id="taMatriz" layoutX="11.0" layoutY="14.0" prefHeight="309.0" prefWidth="172.0" />
+                  <JFXButton fx:id="btRealizarTestes" buttonType="RAISED" layoutX="12.0" layoutY="354.0" maxHeight="40.0" maxWidth="170.0" minHeight="40.0" minWidth="170.0" onAction="#evtBtRealizarTestes" prefHeight="40.0" prefWidth="170.0" ripplerFill="WHITE" style="-fx-background-color: #3e0e4c;" text="Realizar Testes" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </center>
+</BorderPane>
